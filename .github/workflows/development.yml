@@ -1,0 +1,27 @@
+name: Development Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  fetch_secret_and_log:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: <aws-region>
+        role-to-assume: interview-bot
+        role-duration-seconds: 900
+
+    - name: Fetch secret
+      run: |
+        echo "Fetching secret..."
+        aws secretsmanager get-secret-value
+
