@@ -16,7 +16,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-region: <aws-region>
+        aws-region: us-east-1
         role-to-assume: interview-bot
         role-duration-seconds: 900
 
